@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Add Device</title>
+</head>
+<body>
+    <h1>Test Add Device Function</h1>
+    <button onclick="testAdd()">Test Add Device</button>
+    <div id="output"></div>
+    
+    <script>
+        // Simplified test
+        let devices = [];
+        
+        function testAdd() {
+            try {
+                const device = {
+                    id: Date.now(),
+                    name: "Test Device",
+                    type: "server",
+                    location: "US",
+                    hours: 24,
+                    cpuPercent: 50
+                };
+                
+                devices.push(device);
+                document.getElementById('output').innerHTML = 'Device added! Total: ' + devices.length;
+                console.log('Device added:', device);
+                console.log('All devices:', devices);
+            } catch(e) {
+                document.getElementById('output').innerHTML = 'Error: ' + e.message;
+                console.error('Error:', e);
+            }
+        }
+    </script>
+</body>
+</html>

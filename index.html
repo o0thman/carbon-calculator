@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonTracker - Monitor Your Global Infrastructure Footprint</title>
+    <link rel="stylesheet" href="styles-dark.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CarbonTracker</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#calculator">Platform</a>
+                    <a href="#map">Map</a>
+                    <a href="#devices">Devices</a>
+                    <a href="#about">About</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Track Your Global Carbon Footprint</h1>
+            <p class="hero-subtitle">Monitor your resources worldwide and visualize their environmental impact</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value" id="total-co2">0</div>
+                    <div class="stat-label">kg CO₂ / day</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-kwh">0</div>
+                    <div class="stat-label">kWh / day</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-cost">$0</div>
+                    <div class="stat-label">Cost / day</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <h2>CarbonTracker Platform</h2>
+            <p class="section-subtitle">
+                <span class="subtitle-main">🚀 Start Tracking in Seconds!</span>
+                <span class="subtitle-sub">Add your first resource below and watch it appear live on the map with real-time carbon metrics</span>
+            </p>
+            <div class="calculator-card">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="device-name">Resource Name</label>
+                        <input type="text" id="device-name" placeholder="e.g., Production Server Thailand">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="device-type">Resource Type</label>
+                            <select id="device-type">
+                                <option value="server">Server</option>
+                                <option value="desktop">Desktop</option>
+                                <option value="laptop">Laptop</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <select id="location">
+                                <option value="US">US East Coast</option>
+                                <option value="US-CA">US West (California)</option>
+                                <option value="US-TX">US Central (Texas)</option>
+                                <option value="EU">Europe</option>
+                                <option value="EU-FR">France</option>
+                                <option value="EU-DE">Germany</option>
+                                <option value="CN">Thailand/SEA</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Power Input Method</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="power-method" value="cpu" checked>
+                                    <span>CPU Usage</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="power-method" value="watts">
+                                    <span>Direct Watts</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" id="cpu-group">
+                            <label for="cpu-percent">CPU Usage (%)</label>
+                            <input type="range" id="cpu-percent" min="0" max="100" value="50">
+                            <span class="range-value">50%</span>
+                        </div>
+                        
+                        <div class="form-group" id="watts-group" style="display: none;">
+                            <label for="watts">Power (Watts)</label>
+                            <input type="number" id="watts" placeholder="e.g., 300">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hours">Hours per Day</label>
+                            <input type="number" id="hours" value="24" min="0" max="24">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="addDevice()">
+                        <span>✨</span> Track This Resource
+                    </button>
+                </div>
+                
+                <div class="calculator-preview">
+                    <h3>Live Preview</h3>
+                    <div class="preview-stats">
+                        <div class="preview-stat">
+                            <span class="label">Power:</span>
+                            <span class="value" id="preview-watts">0W</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Energy:</span>
+                            <span class="value" id="preview-kwh">0 kWh</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Carbon:</span>
+                            <span class="value" id="preview-co2">0 kg CO₂</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Cost:</span>
+                            <span class="value" id="preview-cost">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Map Section -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2>Global Infrastructure Locations</h2>
+            <div class="world-map">
+                <svg width="1200" height="600" viewBox="0 0 1200 600" class="map-svg" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <!-- Gradient for dots -->
+                    <radialGradient id="dotGradient">
+                      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
+                      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.2" />
+                    </radialGradient>
+                    
+                    <!-- Glow filter -->
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  
+                  <!-- Background -->
+                  <rect width="1200" height="600" fill="transparent"/>
+                  
+                  <!-- World map dots grid -->
+                  <!-- North America -->
+                  <g opacity="0.3">
+                    <circle cx="200" cy="200" r="2" fill="#666"/>
+                    <circle cx="220" cy="200" r="2" fill="#666"/>
+                    <circle cx="240" cy="200" r="2" fill="#666"/>
+                    <circle cx="260" cy="200" r="2" fill="#666"/>
+                    <circle cx="280" cy="200" r="2" fill="#666"/>
+                    <circle cx="200" cy="220" r="2" fill="#666"/>
+                    <circle cx="220" cy="220" r="2" fill="#666"/>
+                    <circle cx="240" cy="220" r="2" fill="#666"/>
+                    <circle cx="260" cy="220" r="2" fill="#666"/>
+                    <circle cx="200" cy="240" r="2" fill="#666"/>
+                    <circle cx="220" cy="240" r="2" fill="#666"/>
+                    <circle cx="240" cy="240" r="2" fill="#666"/>
+                    <circle cx="200" cy="260" r="2" fill="#666"/>
+                    <circle cx="220" cy="260" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- South America -->
+                  <g opacity="0.3">
+                    <circle cx="320" cy="380" r="2" fill="#666"/>
+                    <circle cx="320" cy="400" r="2" fill="#666"/>
+                    <circle cx="320" cy="420" r="2" fill="#666"/>
+                    <circle cx="320" cy="440" r="2" fill="#666"/>
+                    <circle cx="340" cy="380" r="2" fill="#666"/>
+                    <circle cx="340" cy="400" r="2" fill="#666"/>
+                    <circle cx="340" cy="420" r="2" fill="#666"/>
+                    <circle cx="360" cy="360" r="2" fill="#666"/>
+                    <circle cx="360" cy="380" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Europe -->
+                  <g opacity="0.3">
+                    <circle cx="580" cy="180" r="2" fill="#666"/>
+                    <circle cx="600" cy="180" r="2" fill="#666"/>
+                    <circle cx="620" cy="180" r="2" fill="#666"/>
+                    <circle cx="580" cy="200" r="2" fill="#666"/>
+                    <circle cx="600" cy="200" r="2" fill="#666"/>
+                    <circle cx="620" cy="200" r="2" fill="#666"/>
+                    <circle cx="640" cy="200" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Africa -->
+                  <g opacity="0.3">
+                    <circle cx="600" cy="280" r="2" fill="#666"/>
+                    <circle cx="600" cy="300" r="2" fill="#666"/>
+                    <circle cx="600" cy="320" r="2" fill="#666"/>
+                    <circle cx="600" cy="340" r="2" fill="#666"/>
+                    <circle cx="600" cy="360" r="2" fill="#666"/>
+                    <circle cx="620" cy="300" r="2" fill="#666"/>
+                    <circle cx="620" cy="320" r="2" fill="#666"/>
+                    <circle cx="620" cy="340" r="2" fill="#666"/>
+                    <circle cx="580" cy="320" r="2" fill="#666"/>
+                    <circle cx="580" cy="340" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Asia -->
+                  <g opacity="0.3">
+                    <circle cx="700" cy="200" r="2" fill="#666"/>
+                    <circle cx="720" cy="200" r="2" fill="#666"/>
+                    <circle cx="740" cy="200" r="2" fill="#666"/>
+                    <circle cx="760" cy="200" r="2" fill="#666"/>
+                    <circle cx="780" cy="200" r="2" fill="#666"/>
+                    <circle cx="800" cy="200" r="2" fill="#666"/>
+                    <circle cx="820" cy="200" r="2" fill="#666"/>
+                    <circle cx="840" cy="200" r="2" fill="#666"/>
+                    <circle cx="860" cy="200" r="2" fill="#666"/>
+                    <circle cx="720" cy="220" r="2" fill="#666"/>
+                    <circle cx="740" cy="220" r="2" fill="#666"/>
+                    <circle cx="760" cy="220" r="2" fill="#666"/>
+                    <circle cx="780" cy="220" r="2" fill="#666"/>
+                    <circle cx="800" cy="220" r="2" fill="#666"/>
+                    <circle cx="820" cy="220" r="2" fill="#666"/>
+                    <circle cx="840" cy="220" r="2" fill="#666"/>
+                    <circle cx="740" cy="240" r="2" fill="#666"/>
+                    <circle cx="760" cy="240" r="2" fill="#666"/>
+                    <circle cx="780" cy="240" r="2" fill="#666"/>
+                    <circle cx="800" cy="240" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Southeast Asia / Thailand -->
+                  <g opacity="0.3">
+                    <circle cx="820" cy="280" r="2" fill="#666"/>
+                    <circle cx="840" cy="280" r="2" fill="#666"/>
+                    <circle cx="820" cy="300" r="2" fill="#666"/>
+                    <circle cx="840" cy="300" r="2" fill="#666"/>
+                    <circle cx="860" cy="300" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Australia -->
+                  <g opacity="0.3">
+                    <circle cx="880" cy="420" r="2" fill="#666"/>
+                    <circle cx="900" cy="420" r="2" fill="#666"/>
+                    <circle cx="920" cy="420" r="2" fill="#666"/>
+                    <circle cx="940" cy="420" r="2" fill="#666"/>
+                    <circle cx="880" cy="440" r="2" fill="#666"/>
+                    <circle cx="900" cy="440" r="2" fill="#666"/>
+                    <circle cx="920" cy="440" r="2" fill="#666"/>
+                  </g>
+                  
+                  <!-- Active location: US East Coast -->
+                  <g>
+                    <circle cx="280" cy="220" r="6" fill="#22c55e" filter="url(#glow)">
+                      <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="280" cy="220" r="2" fill="#fff"/>
+                  </g>
+                  
+                  <!-- Active location: Thailand -->
+                  <g>
+                    <circle cx="840" cy="290" r="6" fill="#22c55e" filter="url(#glow)">
+                      <animate attributeName="r" values="6;10;6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="1;0.6;1" dur="2s" begin="1s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="840" cy="290" r="2" fill="#fff"/>
+                  </g>
+                  
+                  <!-- Connection line with animation -->
+                  <path d="M 280 220 Q 560 150 840 290" 
+                        stroke="#22c55e" 
+                        stroke-width="1" 
+                        fill="none" 
+                        opacity="0.4"
+                        stroke-dasharray="5,5">
+                    <animate attributeName="stroke-dashoffset" 
+                             values="0;10" 
+                             dur="1s" 
+                             repeatCount="indefinite"/>
+                  </path>
+                  
+                  <!-- Labels -->
+                  <text x="280" y="205" fill="#a3a3a3" font-size="11" text-anchor="middle" font-family="sans-serif">US East</text>
+                  <text x="840" y="275" fill="#a3a3a3" font-size="11" text-anchor="middle" font-family="sans-serif">Thailand</text>
+                  
+                  <!-- Dynamic device markers will be added here -->
+                  <g id="device-markers"></g>
+                </svg>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot active"></span>
+                        <span>Active Regions</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot"></span>
+                        <span>Available Regions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devices Section -->
+    <section id="devices" class="devices-section">
+        <div class="container">
+            <h2>Your Resources</h2>
+            <div id="devices-grid" class="devices-grid">
+                <!-- Device cards will be added here dynamically -->
+            </div>
+            <div id="empty-state" class="empty-state">
+                <p>No resources added yet. Use the platform above to add your first resource!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section">
+        <div class="container">
+            <h2>Environmental Impact</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">🚗</div>
+                    <div class="insight-value" id="miles-equivalent">0</div>
+                    <div class="insight-label">Miles driven equivalent</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🌳</div>
+                    <div class="insight-value" id="trees-needed">0</div>
+                    <div class="insight-label">Trees needed to offset (yearly)</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-value" id="yearly-total">0</div>
+                    <div class="insight-label">Tons CO₂ per year</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Why CarbonTracker?</h2>
+            <div class="about-content">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Global Resource Monitoring</h4>
+                        <p>Track servers, devices, and infrastructure across multiple regions worldwide</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Real-time Impact Analysis</h4>
+                        <p>Instantly see how your resources affect the environment with live calculations</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Regional Intelligence</h4>
+                        <p>Accurate carbon intensity data for different regions and energy grids</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Privacy-First Design</h4>
+                        <p>All calculations happen locally. Your infrastructure data never leaves your browser</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Actionable Insights</h4>
+                        <p>Get recommendations on how to reduce your carbon footprint effectively</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Easy Integration</h4>
+                        <p>Simple API and export options to integrate with your existing monitoring tools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 CarbonTracker - Othman</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

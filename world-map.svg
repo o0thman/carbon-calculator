@@ -1,0 +1,157 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for dots -->
+    <radialGradient id="dotGradient">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.2" />
+    </radialGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="transparent"/>
+  
+  <!-- World map dots grid -->
+  <!-- North America -->
+  <g opacity="0.3">
+    <circle cx="200" cy="200" r="2" fill="#333"/>
+    <circle cx="220" cy="200" r="2" fill="#333"/>
+    <circle cx="240" cy="200" r="2" fill="#333"/>
+    <circle cx="260" cy="200" r="2" fill="#333"/>
+    <circle cx="280" cy="200" r="2" fill="#333"/>
+    <circle cx="200" cy="220" r="2" fill="#333"/>
+    <circle cx="220" cy="220" r="2" fill="#333"/>
+    <circle cx="240" cy="220" r="2" fill="#333"/>
+    <circle cx="260" cy="220" r="2" fill="#333"/>
+    <circle cx="200" cy="240" r="2" fill="#333"/>
+    <circle cx="220" cy="240" r="2" fill="#333"/>
+    <circle cx="240" cy="240" r="2" fill="#333"/>
+    <circle cx="200" cy="260" r="2" fill="#333"/>
+    <circle cx="220" cy="260" r="2" fill="#333"/>
+  </g>
+  
+  <!-- South America -->
+  <g opacity="0.3">
+    <circle cx="320" cy="380" r="2" fill="#333"/>
+    <circle cx="320" cy="400" r="2" fill="#333"/>
+    <circle cx="320" cy="420" r="2" fill="#333"/>
+    <circle cx="320" cy="440" r="2" fill="#333"/>
+    <circle cx="340" cy="380" r="2" fill="#333"/>
+    <circle cx="340" cy="400" r="2" fill="#333"/>
+    <circle cx="340" cy="420" r="2" fill="#333"/>
+    <circle cx="360" cy="360" r="2" fill="#333"/>
+    <circle cx="360" cy="380" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Europe -->
+  <g opacity="0.3">
+    <circle cx="580" cy="180" r="2" fill="#333"/>
+    <circle cx="600" cy="180" r="2" fill="#333"/>
+    <circle cx="620" cy="180" r="2" fill="#333"/>
+    <circle cx="580" cy="200" r="2" fill="#333"/>
+    <circle cx="600" cy="200" r="2" fill="#333"/>
+    <circle cx="620" cy="200" r="2" fill="#333"/>
+    <circle cx="640" cy="200" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Africa -->
+  <g opacity="0.3">
+    <circle cx="600" cy="280" r="2" fill="#333"/>
+    <circle cx="600" cy="300" r="2" fill="#333"/>
+    <circle cx="600" cy="320" r="2" fill="#333"/>
+    <circle cx="600" cy="340" r="2" fill="#333"/>
+    <circle cx="600" cy="360" r="2" fill="#333"/>
+    <circle cx="620" cy="300" r="2" fill="#333"/>
+    <circle cx="620" cy="320" r="2" fill="#333"/>
+    <circle cx="620" cy="340" r="2" fill="#333"/>
+    <circle cx="580" cy="320" r="2" fill="#333"/>
+    <circle cx="580" cy="340" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Asia -->
+  <g opacity="0.3">
+    <circle cx="700" cy="200" r="2" fill="#333"/>
+    <circle cx="720" cy="200" r="2" fill="#333"/>
+    <circle cx="740" cy="200" r="2" fill="#333"/>
+    <circle cx="760" cy="200" r="2" fill="#333"/>
+    <circle cx="780" cy="200" r="2" fill="#333"/>
+    <circle cx="800" cy="200" r="2" fill="#333"/>
+    <circle cx="820" cy="200" r="2" fill="#333"/>
+    <circle cx="840" cy="200" r="2" fill="#333"/>
+    <circle cx="860" cy="200" r="2" fill="#333"/>
+    <circle cx="720" cy="220" r="2" fill="#333"/>
+    <circle cx="740" cy="220" r="2" fill="#333"/>
+    <circle cx="760" cy="220" r="2" fill="#333"/>
+    <circle cx="780" cy="220" r="2" fill="#333"/>
+    <circle cx="800" cy="220" r="2" fill="#333"/>
+    <circle cx="820" cy="220" r="2" fill="#333"/>
+    <circle cx="840" cy="220" r="2" fill="#333"/>
+    <circle cx="740" cy="240" r="2" fill="#333"/>
+    <circle cx="760" cy="240" r="2" fill="#333"/>
+    <circle cx="780" cy="240" r="2" fill="#333"/>
+    <circle cx="800" cy="240" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Southeast Asia / Thailand -->
+  <g opacity="0.3">
+    <circle cx="820" cy="280" r="2" fill="#333"/>
+    <circle cx="840" cy="280" r="2" fill="#333"/>
+    <circle cx="820" cy="300" r="2" fill="#333"/>
+    <circle cx="840" cy="300" r="2" fill="#333"/>
+    <circle cx="860" cy="300" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Australia -->
+  <g opacity="0.3">
+    <circle cx="880" cy="420" r="2" fill="#333"/>
+    <circle cx="900" cy="420" r="2" fill="#333"/>
+    <circle cx="920" cy="420" r="2" fill="#333"/>
+    <circle cx="940" cy="420" r="2" fill="#333"/>
+    <circle cx="880" cy="440" r="2" fill="#333"/>
+    <circle cx="900" cy="440" r="2" fill="#333"/>
+    <circle cx="920" cy="440" r="2" fill="#333"/>
+  </g>
+  
+  <!-- Active location: US East Coast -->
+  <g>
+    <circle cx="280" cy="220" r="6" fill="#22c55e" filter="url(#glow)">
+      <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="220" r="2" fill="#fff"/>
+  </g>
+  
+  <!-- Active location: Thailand -->
+  <g>
+    <circle cx="840" cy="290" r="6" fill="#22c55e" filter="url(#glow)">
+      <animate attributeName="r" values="6;10;6" dur="2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="840" cy="290" r="2" fill="#fff"/>
+  </g>
+  
+  <!-- Connection line with animation -->
+  <path d="M 280 220 Q 560 150 840 290" 
+        stroke="#22c55e" 
+        stroke-width="1" 
+        fill="none" 
+        opacity="0.4"
+        stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" 
+             values="0;10" 
+             dur="1s" 
+             repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Labels -->
+  <text x="280" y="205" fill="#a3a3a3" font-size="11" text-anchor="middle" font-family="sans-serif">US East</text>
+  <text x="840" y="275" fill="#a3a3a3" font-size="11" text-anchor="middle" font-family="sans-serif">Thailand</text>
+</svg>

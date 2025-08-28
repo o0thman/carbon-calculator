@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonTracker - Monitor Your Global Infrastructure Footprint</title>
+    <link rel="stylesheet" href="styles-dark.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <span class="logo-text">CarbonTracker</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#calculator">Calculator</a>
+                    <a href="#devices">Devices</a>
+                    <a href="#about">About</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Track Your Global Carbon Footprint</h1>
+            <p class="hero-subtitle">Monitor your resources worldwide and visualize their environmental impact</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value" id="total-co2">0</div>
+                    <div class="stat-label">kg CO₂ / day</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-kwh">0</div>
+                    <div class="stat-label">kWh / day</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-cost">$0</div>
+                    <div class="stat-label">Cost / day</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <h2>CarbonTracker Platform - Sneak Peek</h2>
+            <p class="section-subtitle">Add your resources and instantly see their carbon impact</p>
+            <div class="calculator-card">
+                <svg viewBox="0 0 1000 500" class="map-svg">
+                    <!-- Simplified world map -->
+                    <rect x="0" y="0" width="1000" height="500" fill="#0a0a0a"/>
+                    
+                    <!-- Continents (simplified shapes) -->
+                    <!-- North America -->
+                    <path d="M 150 150 Q 200 120 250 140 L 280 180 L 250 220 L 200 200 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- South America -->
+                    <path d="M 230 250 L 250 280 L 240 350 L 220 380 L 200 350 L 210 270 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- Europe -->
+                    <path d="M 480 140 L 520 130 L 530 160 L 510 170 L 490 160 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- Africa -->
+                    <path d="M 480 200 L 520 190 L 530 280 L 500 320 L 470 280 L 470 220 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- Asia -->
+                    <path d="M 550 120 Q 650 100 750 130 L 780 180 L 750 200 L 650 180 L 580 160 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- Australia -->
+                    <path d="M 720 320 L 780 310 L 790 350 L 750 360 L 720 340 Z" fill="#1a1a1a" stroke="#262626"/>
+                    
+                    <!-- US East Coast location -->
+                    <circle cx="250" cy="170" r="8" class="map-ping">
+                        <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="250" y="160" class="map-label">US East</text>
+                    
+                    <!-- Thailand location -->
+                    <circle cx="710" cy="210" r="8" class="map-ping">
+                        <animate attributeName="r" values="8;12;8" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.5;1" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="710" y="200" class="map-label">Thailand</text>
+                    
+                    <!-- Connection line -->
+                    <line x1="250" y1="170" x2="710" y2="210" class="map-connection">
+                        <animate attributeName="stroke-dashoffset" values="1000;0" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                </svg>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot active"></span>
+                        <span>Active Regions</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot"></span>
+                        <span>Available Regions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <h2>CarbonTracker Platform - Sneak Peek</h2>
+            <p class="section-subtitle">Add your resources and instantly see their carbon impact</p>
+            <div class="calculator-card">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="device-name">Device Name</label>
+                        <input type="text" id="device-name" placeholder="e.g., Production Server">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="device-type">Device Type</label>
+                            <select id="device-type">
+                                <option value="server">Server</option>
+                                <option value="desktop">Desktop</option>
+                                <option value="laptop">Laptop</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <select id="location">
+                                <option value="US">United States</option>
+                                <option value="US-CA">California</option>
+                                <option value="US-TX">Texas</option>
+                                <option value="EU">Europe</option>
+                                <option value="EU-FR">France</option>
+                                <option value="EU-DE">Germany</option>
+                                <option value="CN">China</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Power Input Method</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="power-method" value="cpu" checked>
+                                    <span>CPU Usage</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="power-method" value="watts">
+                                    <span>Direct Watts</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" id="cpu-group">
+                            <label for="cpu-percent">CPU Usage (%)</label>
+                            <input type="range" id="cpu-percent" min="0" max="100" value="50">
+                            <span class="range-value">50%</span>
+                        </div>
+                        
+                        <div class="form-group" id="watts-group" style="display: none;">
+                            <label for="watts">Power (Watts)</label>
+                            <input type="number" id="watts" placeholder="e.g., 300">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hours">Hours per Day</label>
+                            <input type="number" id="hours" value="24" min="0" max="24">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="addDevice()">
+                        <span>+</span> Add Device
+                    </button>
+                </div>
+                
+                <div class="calculator-preview">
+                    <h3>Live Preview</h3>
+                    <div class="preview-stats">
+                        <div class="preview-stat">
+                            <span class="label">Power:</span>
+                            <span class="value" id="preview-watts">0W</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Energy:</span>
+                            <span class="value" id="preview-kwh">0 kWh</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Carbon:</span>
+                            <span class="value" id="preview-co2">0 kg CO₂</span>
+                        </div>
+                        <div class="preview-stat">
+                            <span class="label">Cost:</span>
+                            <span class="value" id="preview-cost">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devices Section -->
+    <section id="devices" class="devices-section">
+        <div class="container">
+            <h2>Your Devices</h2>
+            <div id="devices-grid" class="devices-grid">
+                <!-- Device cards will be added here dynamically -->
+            </div>
+            <div id="empty-state" class="empty-state">
+                <p>No devices added yet. Use the calculator above to add your first device!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section">
+        <div class="container">
+            <h2>Environmental Impact</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">🚗</div>
+                    <div class="insight-value" id="miles-equivalent">0</div>
+                    <div class="insight-label">Miles driven equivalent</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🌳</div>
+                    <div class="insight-value" id="trees-needed">0</div>
+                    <div class="insight-label">Trees needed to offset (yearly)</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-value" id="yearly-total">0</div>
+                    <div class="insight-label">Tons CO₂ per year</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Why CarbonTracker?</h2>
+            <div class="about-content">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Global Resource Monitoring</h4>
+                        <p>Track servers, devices, and infrastructure across multiple regions worldwide</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Real-time Impact Analysis</h4>
+                        <p>Instantly see how your resources affect the environment with live calculations</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Regional Intelligence</h4>
+                        <p>Accurate carbon intensity data for different regions and energy grids</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Privacy-First Design</h4>
+                        <p>All calculations happen locally. Your infrastructure data never leaves your browser</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Actionable Insights</h4>
+                        <p>Get recommendations on how to reduce your carbon footprint effectively</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Easy Integration</h4>
+                        <p>Simple API and export options to integrate with your existing monitoring tools</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 CarbonTracker - Global Infrastructure Carbon Monitoring Platform</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

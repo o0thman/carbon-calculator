@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Production Server",
+    "type": "server",
+    "cpuPercent": 45,
+    "hours": 24,
+    "location": "US"
+  },
+  {
+    "name": "Development Server",
+    "type": "server",
+    "watts": 250,
+    "hours": 24,
+    "location": "US-CA"
+  },
+  {
+    "name": "Office Desktop",
+    "type": "desktop",
+    "cpuPercent": 30,
+    "hours": 8,
+    "location": "US"
+  },
+  {
+    "name": "Developer Laptop",
+    "type": "laptop",
+    "cpuPercent": 40,
+    "hours": 10,
+    "location": "EU"
+  },
+  {
+    "name": "High-Performance Server",
+    "type": "server",
+    "cpuPercent": 75,
+    "hours": 24,
+    "location": "US-TX"
+  }
+]
