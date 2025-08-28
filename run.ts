@@ -10,7 +10,7 @@ let totalCost = 0
 
 // Calculate and display results for each device
 data.forEach(device => {
-  const result = calculate(device)
+  const result = calculate(device as any)
   
   console.log(`📊 ${result.device}`)
   console.log(`   Power: ${result.watts}W`)

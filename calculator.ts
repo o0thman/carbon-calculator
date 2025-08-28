@@ -37,6 +37,10 @@ export function calculate(device: Device) {
     watts = spec.min + (device.cpuPercent / 100) * (spec.max - spec.min)
   }
   
+  if (!watts) {
+    watts = 0 // Default fallback
+  }
+  
   // Calculate energy consumption
   const kwh = (watts * device.hours) / 1000
   
