@@ -731,11 +731,15 @@ footer {
     
     .nav-container {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
         align-items: center;
     }
     
+    .logo {
+        gap: 1.5rem;
+    }
+    
     .nav-links {
-        gap: 1rem;
+        gap: 2rem;
     }
 }
