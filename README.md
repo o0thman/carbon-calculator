@@ -1,4 +1,4 @@
-# Carbon Calculator - Ultra Simple Version
+# Carbon Calculator - Version 0.1
 
 A minimalist carbon footprint calculator for local infrastructure. Start with just 3 files, grow as needed.
 
