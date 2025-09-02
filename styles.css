@@ -468,6 +468,12 @@ footer {
         gap: 2rem;
     }
     
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
     .nav-links {
         gap: 1rem;
     }
